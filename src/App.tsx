@@ -9,7 +9,7 @@ interface AppState {
   newSubsNumber: number
 }
 
-const Initial_State = [
+/*const Initial_State = [
   {
     nickname: 'dapelu',
     subMonths: 3,
@@ -21,7 +21,7 @@ const Initial_State = [
     subMonths: 7,
     avatar: 'https://i.pravatar.cc/150?u=sergio_serrano',
   }
-]
+]*/
 
 function App() {
   const [subs, setSubs] = useState<AppState["subs"]>([])
@@ -29,7 +29,16 @@ function App() {
   const divRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    setSubs(Initial_State)
+    //setSubs(Initial_State)
+    /*const fetchSubs = (): Promise<any> => {
+      return fetch('http://localhost:3000/subs').then(res => res.json())
+    }
+    fetch('http://localhost:3000/subs')
+      .then(res => res.json())
+      .then(subs => {
+        console.log(subs)
+        setSubs(subs)
+      })*/
   }, [])
 
   const handleNewSub = (newSub: Suscriptor): void => {
@@ -40,6 +49,7 @@ function App() {
     <div className="App" ref={divRef}>
       <h1>Suscriptores</h1>
       <List subs={subs}/>
+      New subs: {newSubsNumber}
       <Form onNewSub={handleNewSub}/>
     </div>
   );
